@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * load.spec.js — Tests 01–08: page load & document structure.
+ * load.spec.js — Tests 01–09: page load & document structure.
  *   01 page-loads-200       — root URL returns HTTP 200
  *   02 doctype-and-lang     — <!doctype html>, lang="en", data-theme valid
  *   03 title-text           — exact <title> string
@@ -8,7 +8,8 @@
  *   05 viewport-meta        — width=device-width, initial-scale=1
  *   06 main-element         — exactly one <main id="top">
  *   07 hero-h1-content      — H1 contains "Maryam Ansari"
- *   08 footer-renders       — copyright + "United Kingdom"
+ *   08 about-copy-updated   — current bio copy renders and client list is absent
+ *   09 footer-renders       — copyright + "United Kingdom"
  */
 const { test, expect } = require('./fixtures');
 
@@ -66,7 +67,16 @@ test.describe('Page load & structure', () => {
     expect(text.trim()).toBe('Maryam Ansari');
   });
 
-  test('08 footer-renders', async ({ page }) => {
+  test('08 about-copy-updated', async ({ page }) => {
+    await page.goto('/');
+    const about = page.locator('section.about');
+    await expect(about).toContainText('I’m a UK-based logo designer and visual illustrator');
+    await expect(about).toContainText('Every visual is crafted with intention');
+    await expect(about).not.toContainText('Selected clients');
+    await expect(about).not.toContainText('Maryam Ansari has been drawing logos since 2010');
+  });
+
+  test('09 footer-renders', async ({ page }) => {
     await page.goto('/');
     const footer = page.locator('footer.foot');
     await expect(footer).toBeVisible();

@@ -358,6 +358,7 @@
     justify-content: space-between;
     padding: 0 var(--pad-x);
     margin: clamp(80px, 12vw, 140px) 0 clamp(28px, 3vw, 36px);
+    scroll-margin-top: clamp(96px, 10vw, 132px);
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -395,15 +396,6 @@
     color: color-mix(in srgb, var(--ink) 88%, transparent);
   }
   .about p:last-child { margin-bottom: 0; }
-  .about .meta {
-    margin-top: clamp(36px, 5vw, 52px);
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-
   /* ─── WORKS ─── */
   .works {
     padding: 0 var(--pad-x);
@@ -780,13 +772,13 @@
   </section>
 
   <!-- ─── WORKS ─── -->
-  <div class="section-head" id="works-head" data-screen-label="02 Works">
+  <div class="section-head" id="works" data-screen-label="02 Works">
     <span>Selected Works</span>
     <span>Eleven Marks  /  2010 — 2024</span>
   </div>
   <div class="rule"></div>
 
-  <section class="works" id="works" aria-label="Selected works">
+  <section class="works" aria-label="Selected works">
     <!-- Works in original curated order. Index labels only — descriptions live inside each photo. -->
     <article class="work"><figure><img src="works/01-jobjooya.jpg" alt="Jobjooya wordmark, 2018" width="2000" height="1000" loading="lazy" decoding="async" fetchpriority="high"/></figure></article>
     <article class="work"><figure><img src="works/02-gorosneh.jpg" alt="Gorosneh mascot and wordmark, 2014" width="2000" height="1000" loading="lazy" decoding="async"/></figure></article>
@@ -802,18 +794,17 @@
   </section>
 
   <!-- ─── ABOUT ─── -->
-  <div class="section-head" id="about-head" data-screen-label="03 About">
+  <div class="section-head" id="about" data-screen-label="03 About">
     <span>About</span>
     <span>A Note</span>
   </div>
   <div class="rule"></div>
 
-  <section class="about" id="about">
+  <section class="about" aria-label="About Maryam Ansari">
     <div class="about-inner">
       <h2>A quiet practice, patiently kept.</h2>
-      <p>Maryam Ansari has been drawing logos since 2010 — based in the UK. Wordmarks, monograms, mascots, pictorial marks — whichever the brief honestly asks for, nothing more.</p>
-      <p>The work prizes proportion, restraint, and the willingness to redraw a single line until it sits right. Tools change; that part doesn't.</p>
-      <div class="meta">Selected clients · Jobjooya · Janan Dental · Taba IELTS · Tourchee · Robin Food</div>
+      <p>I’m a UK-based logo designer and visual illustrator with a lifelong passion for visual identity, typography, and storytelling. My work focuses on creating minimal yet meaningful designs, from wordmarks and monograms to pictorial marks and character-based identities.</p>
+      <p>Every visual is crafted with intention, helping brands communicate their purpose, personality, and values with clarity and confidence.</p>
     </div>
   </section>
 

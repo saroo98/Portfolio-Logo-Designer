@@ -5,7 +5,7 @@
  *   10 nav-links-count-and-targets — 3 links: #works / #about / #contact
  *   11 nav-is-scrolled-class       — added past 8px scrollY, removed at top
  *   12 nav-active-on-works         — active class on Works while in section
- *   13 smooth-scroll-anchor        — anchor click moves scrollY into view
+ *   13 anchor-scroll-lands-on-heads — Works/About clicks keep section heads visible
  *   14 anchor-ids-exist            — every nav href resolves to a real element
  *   (tests 10/12/13/14 auto-skip in mobile-chrome project — nav-links hidden)
  */
@@ -48,17 +48,31 @@ test.describe('Navigation', () => {
     await expect(page.locator('.nav-links a[href="#works"]')).toHaveClass(/active/);
   });
 
-  test('13 smooth-scroll-anchor', async ({ page }) => {
+  test('13 anchor-scroll-lands-on-heads', async ({ page }) => {
     test.skip(test.info().project.name === 'mobile-chrome', 'nav-links hidden < 720px');
     await page.goto('/');
-    const before = await page.evaluate(() => window.scrollY);
+
     await page.click('.nav-links a[href="#works"]');
-    await page.waitForFunction(() => {
-      const w = document.getElementById('works');
-      return w && Math.abs(window.scrollY - w.offsetTop) < 200;
-    }, null, { timeout: 5000 });
-    const after = await page.evaluate(() => window.scrollY);
-    expect(after).toBeGreaterThan(before);
+    await page.waitForURL(/#works$/);
+    await expect.poll(async () => page.evaluate(() => {
+      const nav = document.querySelector('#nav');
+      const works = document.querySelector('#works');
+      if (!nav || !works) return false;
+      const navBottom = nav.getBoundingClientRect().bottom;
+      const top = works.getBoundingClientRect().top;
+      return top >= navBottom + 20 && top <= navBottom + 90;
+    })).toBe(true);
+
+    await page.click('.nav-links a[href="#about"]');
+    await page.waitForURL(/#about$/);
+    await expect.poll(async () => page.evaluate(() => {
+      const nav = document.querySelector('#nav');
+      const about = document.querySelector('#about');
+      if (!nav || !about) return false;
+      const navBottom = nav.getBoundingClientRect().bottom;
+      const top = about.getBoundingClientRect().top;
+      return top >= navBottom + 20 && top <= navBottom + 90;
+    })).toBe(true);
   });
 
   test('14 anchor-ids-exist', async ({ page }) => {
