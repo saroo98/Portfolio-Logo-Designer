@@ -662,26 +662,26 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="brand">Maryam Ansari</a>
-    <nav class="nav-links" aria-label="primary">
+    <nav class="nav-links" aria-label="Primary">
       <a href="#works" data-link="works">Works</a>
       <a href="#about" data-link="about">About</a>
       <a href="#contact" data-link="contact">Contact</a>
     </nav>
     <div style="display:flex; align-items:center; gap:10px;">
-      <button class="theme" id="theme" aria-label="Toggle theme">
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" class="theme" id="theme" aria-label="Toggle theme" aria-pressed="false">
+        <svg class="sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
         </svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-        <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu-drawer">
+        <svg class="bars" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
           <path d="M4 8h16M4 16h16"></path>
         </svg>
-        <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <svg class="x" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
           <path d="M6 6l12 12M18 6L6 18"></path>
         </svg>
       </button>
@@ -772,14 +772,14 @@
 
 <!-- ─── LIGHTBOX ─── -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Close">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+  <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
   </button>
-  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Next">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
   </button>
   <div class="lightbox-stage">
     <img id="lb-img" alt="" />
