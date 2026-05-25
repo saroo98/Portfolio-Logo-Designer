@@ -404,11 +404,11 @@
     box-shadow: var(--shadow);
     cursor: zoom-in;
     transition: background var(--t), box-shadow 600ms cubic-bezier(0.2, 0.6, 0.2, 1), transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
-    will-change: transform;
   }
   .work > figure:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-4px);
+    will-change: transform;
   }
   .work img {
     width: 100%;
@@ -752,7 +752,7 @@
 
   <section class="works" id="works" aria-label="Selected works">
     <!-- Works in original curated order. Index labels only — descriptions live inside each photo. -->
-    <article class="work"><figure><img src="works/01-jobjooya.jpg" alt="Jobjooya wordmark, 2018" width="2000" height="1000" loading="lazy" decoding="async"/></figure></article>
+    <article class="work"><figure><img src="works/01-jobjooya.jpg" alt="Jobjooya wordmark, 2018" width="2000" height="1000" loading="lazy" decoding="async" fetchpriority="high"/></figure></article>
     <article class="work"><figure><img src="works/02-gorosneh.jpg" alt="Gorosneh mascot and wordmark, 2014" width="2000" height="1000" loading="lazy" decoding="async"/></figure></article>
     <article class="work"><figure><img src="works/03-janan-dental.jpg" alt="Janan Dental clinic logo, 2016" width="2000" height="1000" loading="lazy" decoding="async"/></figure></article>
     <article class="work"><figure><img src="works/04-diako.jpg" alt="Diako merchandising enterprise wordmark, 2015" width="2000" height="1000" loading="lazy" decoding="async"/></figure></article>
@@ -914,6 +914,8 @@
 
     let current = 0;
     let isOpen = false;
+    // monotonic token; stale image-load callbacks for an older index no-op.
+    let loadToken = 0;
 
     // preload neighbours for instant swap
     const preload = (i) => {
@@ -929,9 +931,13 @@
       const { src, alt } = sources[current];
       if (instant) {
         lbImg.classList.remove('is-ready', 'leave-left', 'leave-right', 'enter-left', 'enter-right');
+        const token = ++loadToken;
+        lbImg.addEventListener('load', () => {
+          if (token !== loadToken) return;
+          requestAnimationFrame(() => lbImg.classList.add('is-ready'));
+        }, { once: true });
         lbImg.src = src;
         lbImg.alt = alt;
-        lbImg.onload = () => requestAnimationFrame(() => lbImg.classList.add('is-ready'));
       }
       lbIdx.textContent = String(current + 1);
       preload(current);
@@ -952,6 +958,7 @@
       setTimeout(() => {
         current = (i + sources.length) % sources.length;
         const { src, alt } = sources[current];
+        const token = ++loadToken;
         lbImg.classList.remove(leaveCls);
         lbImg.classList.add(enterCls);
         lbImg.src = src;
@@ -960,6 +967,7 @@
         preload(current);
 
         const enterNow = () => {
+          if (token !== loadToken) { isSwapping = false; return; }
           // force reflow so the enter-* transform is the starting state
           // eslint-disable-next-line no-unused-expressions
           lbImg.offsetWidth;
@@ -970,7 +978,7 @@
           });
         };
         if (lbImg.complete && lbImg.naturalWidth) enterNow();
-        else lbImg.onload = enterNow;
+        else lbImg.addEventListener('load', enterNow, { once: true });
       }, 180);
     };
 
