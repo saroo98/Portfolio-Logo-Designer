@@ -8,7 +8,7 @@
  *   05 viewport-meta        — width=device-width, initial-scale=1
  *   06 main-element         — exactly one <main id="top">
  *   07 hero-h1-content      — H1 contains "Maryam Ansari"
- *   08 about-copy-updated   — current bio copy renders and client list is absent
+ *   08 about-copy-updated   — current bio copy renders, portrait loads, client list is absent
  *   09 footer-renders       — copyright + "United Kingdom"
  */
 const { test, expect } = require('./fixtures');
@@ -72,6 +72,9 @@ test.describe('Page load & structure', () => {
     const about = page.locator('section.about');
     await expect(about).toContainText('I’m a UK-based logo designer and visual illustrator');
     await expect(about).toContainText('Every visual is crafted with intention');
+    const portrait = about.locator('img[alt="Maryam Ansari portrait"]');
+    await expect(portrait).toBeVisible();
+    await expect(portrait).toHaveAttribute('src', 'assets/maryam-ansari-portrait.jpg');
     await expect(about).not.toContainText('Selected clients');
     await expect(about).not.toContainText('Maryam Ansari has been drawing logos since 2010');
   });
