@@ -654,7 +654,8 @@
     .lb-swipe-hint { display: none; }
   }
 
-  body.lb-open { overflow: hidden; }
+  body.lb-open,
+  body.menu-open { overflow: hidden; }
 
   /* ─── SKIP LINK ─── */
   .skip-link {
@@ -828,9 +829,16 @@
   (function () {
     const root = document.documentElement;
     const KEY = 'maryam-theme';
-    document.getElementById('theme').addEventListener('click', () => {
+    const btn = document.getElementById('theme');
+    const apply = (t) => {
+      root.setAttribute('data-theme', t);
+      btn.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
+      btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+    btn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
+      apply(next);
       try { localStorage.setItem(KEY, next); } catch (_) { /* storage blocked */ }
     });
   })();
@@ -862,14 +870,28 @@
     const burger = document.getElementById('burger');
     const drawer = document.getElementById('menu-drawer');
     if (!burger) return;
+    const main = document.querySelector('main');
+    const foot = document.querySelector('footer.foot');
+    const drawerLinks = drawer.querySelectorAll('a[data-menu]');
+
     const setOpen = (open) => {
       document.body.classList.toggle('menu-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (main) main.toggleAttribute('inert', open);
+      if (foot) foot.toggleAttribute('inert', open);
+      if (open) {
+        // move focus into the drawer
+        const first = drawerLinks[0];
+        if (first && typeof first.focus === 'function') first.focus({ preventScroll: true });
+      } else {
+        // return focus to the burger
+        burger.focus({ preventScroll: true });
+      }
     };
     burger.addEventListener('click', () => setOpen(!document.body.classList.contains('menu-open')));
-    drawer.querySelectorAll('a[data-menu]').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    drawerLinks.forEach(a => a.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setOpen(false); });
   })();
 
