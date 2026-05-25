@@ -1,6 +1,6 @@
 # Maryam Ansari — Logo Designer
 
-Static portfolio site implemented from the `hossein-handoff.zip` design bundle (claude.ai/design). Visible layout, text, and design are pixel-identical to the handoff prototype; this repo adds the things prototypes leave out — head meta, a11y plumbing, focus management, scroll lock, performance tuning — and proves them with a 50-test Playwright suite.
+Static portfolio site. Visible layout, text, and design are pixel-identical to the handoff prototype; this repo adds the things prototypes leave out — head meta, a11y plumbing, focus management, scroll lock, performance tuning — and proves them with a 50-test Playwright suite.
 
 ## Run locally
 
