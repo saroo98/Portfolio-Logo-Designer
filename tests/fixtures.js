@@ -1,13 +1,8 @@
 // @ts-check
-const { test: base, expect } = require('@playwright/test');
-
-const test = base.extend({
-  page: async ({ page }, use) => {
-    await page.addInitScript(() => {
-      try { localStorage.clear(); sessionStorage.clear(); } catch (_) {}
-    });
-    await use(page);
-  },
-});
+// Each Playwright test gets a fresh BrowserContext by default, so
+// localStorage / sessionStorage start empty automatically. No init-script
+// clearing here — it would wipe state between goto() and reload(), breaking
+// persistence tests.
+const { test, expect } = require('@playwright/test');
 
 module.exports = { test, expect };
