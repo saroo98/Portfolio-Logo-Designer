@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="M">
+  <style>
+    @media (prefers-color-scheme: dark) { .bg { fill: #161616; } .fg { fill: #e8e8e8; } }
+    @media (prefers-color-scheme: light) { .bg { fill: #f0f0f0; } .fg { fill: #1c1c1c; } }
+    .bg { fill: #161616; }
+    .fg { fill: #e8e8e8; }
+  </style>
+  <rect class="bg" width="32" height="32" rx="4"/>
+  <text class="fg" x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="300"
+        font-size="22">M</text>
+</svg>
