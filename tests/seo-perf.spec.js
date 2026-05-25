@@ -1,4 +1,12 @@
 // @ts-check
+/**
+ * seo-perf.spec.js — Tests 47–50: SEO meta + perf hint + console hygiene.
+ *   47 favicon-link                  — link[rel=icon] present, resolves 200
+ *   48 theme-color-meta              — at least one meta[name=theme-color]
+ *   49 first-work-priority           — fetchpriority=high + loading=lazy
+ *   50 no-console-errors-full-flow   — full interaction flow, zero console
+ *                                      errors, pageerrors, failed requests
+ */
 const { test, expect } = require('./fixtures');
 
 test.describe('SEO / Performance / Console hygiene', () => {

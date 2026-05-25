@@ -1,6 +1,20 @@
 // @ts-check
+/**
+ * lightbox.spec.js — Tests 27–36: modal image viewer.
+ *   27 figures-are-buttons   — every figure has role=button + tabindex=0
+ *   28 open-on-click         — .lightbox.is-open + body.lb-open set
+ *   29 image-src-matches     — lb-img src ends with works/01-jobjooya.jpg
+ *   30 counter-1-of-11       — "1 / 11" on first open
+ *   31 next-advances         — counter "2", src 02-gorosneh.jpg
+ *   32 prev-rewinds          — counter "2" -> "1"
+ *   33 loop-wrap             — at idx 11, next ⇒ idx 1
+ *   34 click-overlay-closes  — click on lightbox padding closes
+ *   35 escape-closes         — Escape closes, body.lb-open cleared
+ *   36 arrow-keys-navigate   — ArrowRight/Left with debounce wait
+ */
 const { test, expect } = require('./fixtures');
 
+// figures are 1-indexed in :nth-of-type; aligns with visible image numbering.
 const FIG = (n) => `.work:nth-of-type(${n}) > figure`;
 
 test.describe('Lightbox', () => {

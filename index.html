@@ -1,4 +1,35 @@
 <!doctype html>
+<!--
+  ============================================================================
+  index.html — Maryam Ansari, Logo Designer (single-file static portfolio)
+  ============================================================================
+  Sections (ordered top to bottom):
+    1. <head>            : meta, theme init (FOUC-safe), SEO/OG/Twitter/JSON-LD,
+                           preconnect + async Google Fonts, inline <style>.
+    2. <a.skip-link>     : visually-hidden skip-to-content link (focus-visible).
+    3. <header.nav>      : sticky nav. brand + Works/About/Contact + theme +
+                           burger. is-scrolled class added past 8px scrollY.
+    4. <div#menu-drawer> : full-screen mobile drawer, inert when closed.
+    5. <main#top>
+         .hero           : eyebrow + huge serif H1 + lede + 5px dot mark.
+         #works-head     : "Selected Works" / "Eleven Marks / 2010 — 2024".
+         .works          : 11 <article.work><figure><img></figure></article>.
+         #about          : italic H2 + two paragraphs + meta line.
+         #contact        : "Let's make a mark." + mailto + 3 social links.
+    6. <footer.foot>     : brand mark + copyright row.
+    7. <div#lightbox>    : modal viewer (close/prev/next + counter + swipe
+                           hint). focus-trapped, inert when closed.
+    8. <script>          : theme toggle, scroll/active-link, mobile drawer
+                           focus mgmt, lightbox open/close/swap/preload.
+
+  CSS variables (see :root and html[data-theme="dark"]):
+    --bg --nav --paper --ink --dim --rule --accent
+    --pad-x --max --col   (layout)
+    --display --sans      (Fraunces, Geist)
+    --t                   (320ms cubic-bezier timing)
+    --shadow --shadow-hover
+============================================================================
+-->
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8" />

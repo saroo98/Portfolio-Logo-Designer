@@ -1,4 +1,15 @@
 // @ts-check
+/**
+ * playwright.config.js — Playwright Test runner config.
+ *
+ * - testDir          : ./tests (8 spec files, 50 named tests + axe + lighthouse)
+ * - webServer        : auto-launches `npx http-server . -p 4173` for tests;
+ *                      reused if already running outside CI
+ * - projects         : `chromium`     (Desktop Chrome @ 1280×800)
+ *                      `mobile-chrome` (Pixel 5 emulation, 393×851)
+ * - trace/screenshot : retained on failure only
+ * - retries          : 1 in CI, 0 locally
+ */
 const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({

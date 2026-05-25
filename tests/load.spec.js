@@ -1,4 +1,15 @@
 // @ts-check
+/**
+ * load.spec.js — Tests 01–08: page load & document structure.
+ *   01 page-loads-200       — root URL returns HTTP 200
+ *   02 doctype-and-lang     — <!doctype html>, lang="en", data-theme valid
+ *   03 title-text           — exact <title> string
+ *   04 meta-description     — meta description content matches handoff copy
+ *   05 viewport-meta        — width=device-width, initial-scale=1
+ *   06 main-element         — exactly one <main id="top">
+ *   07 hero-h1-content      — H1 contains "Maryam Ansari," and "logo designer."
+ *   08 footer-renders       — copyright + "United Kingdom"
+ */
 const { test, expect } = require('./fixtures');
 
 const EXPECTED_DESCRIPTION =

@@ -1,4 +1,14 @@
 // @ts-check
+/**
+ * mobile-menu.spec.js — Tests 21–26: hamburger + drawer (mobile-chrome only).
+ *   21 burger-visible-mobile        — burger shown, nav-links hidden < 720px
+ *   22 open-drawer                  — opacity polls to >0.99, pointer-events:auto
+ *   23 drawer-links                 — 3 data-menu anchors with matching hrefs
+ *   24 close-on-link-click          — clicking a drawer link removes menu-open
+ *   25 escape-closes-drawer         — Esc key while open closes drawer
+ *   26 aria-expanded-and-scroll-lock — aria-expanded toggles, body overflow=hidden
+ *   (entire suite skips on chromium project)
+ */
 const { test, expect } = require('./fixtures');
 
 test.describe('Mobile menu', () => {

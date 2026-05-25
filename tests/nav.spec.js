@@ -1,4 +1,14 @@
 // @ts-check
+/**
+ * nav.spec.js — Tests 09–14: top navigation behavior.
+ *   09 brand-href-top              — .brand text + href="#top"
+ *   10 nav-links-count-and-targets — 3 links: #works / #about / #contact
+ *   11 nav-is-scrolled-class       — added past 8px scrollY, removed at top
+ *   12 nav-active-on-works         — active class on Works while in section
+ *   13 smooth-scroll-anchor        — anchor click moves scrollY into view
+ *   14 anchor-ids-exist            — every nav href resolves to a real element
+ *   (tests 10/12/13/14 auto-skip in mobile-chrome project — nav-links hidden)
+ */
 const { test, expect } = require('./fixtures');
 
 test.describe('Navigation', () => {

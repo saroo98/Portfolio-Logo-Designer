@@ -1,4 +1,11 @@
 // @ts-check
+/**
+ * images.spec.js — Tests 37–40: work-image attributes + reveal.
+ *   37 all-images-have-alt    — 11 imgs, alt length > 5 each
+ *   38 lazy-decoding-attrs    — loading=lazy + decoding=async on all
+ *   39 width-height-attrs     — width=2000 height=1000 (CLS prevention)
+ *   40 in-view-class-applied  — scrolling image 5 into view triggers .in-view
+ */
 const { test, expect } = require('./fixtures');
 
 test.describe('Images', () => {

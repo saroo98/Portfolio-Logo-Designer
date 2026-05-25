@@ -1,3 +1,8 @@
+<!--
+  favicon.svg — Maryam Ansari brand mark.
+  Single italic serif "M" on a rounded square. Inverts automatically with the
+  user's prefers-color-scheme so the tab icon stays readable in both themes.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="M">
   <style>
     @media (prefers-color-scheme: dark) { .bg { fill: #161616; } .fg { fill: #e8e8e8; } }

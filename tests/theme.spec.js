@@ -1,4 +1,13 @@
 // @ts-check
+/**
+ * theme.spec.js — Tests 15–20: dark/light theme toggle.
+ *   15 default-theme-dark        — fresh visit ⇒ data-theme="dark"
+ *   16 toggle-dark-to-light      — one click switches html attribute
+ *   17 toggle-light-to-dark      — second click switches back
+ *   18 persistence-across-reload — localStorage key "maryam-theme" persists
+ *   19 icon-swap                 — sun displayed in light, moon in dark
+ *   20 bg-var-changes            — --bg CSS variable differs between themes
+ */
 const { test, expect } = require('./fixtures');
 
 const KEY = 'maryam-theme';

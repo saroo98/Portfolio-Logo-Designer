@@ -1,4 +1,15 @@
 // @ts-check
+/**
+ * accessibility.spec.js — Tests 41–46 + axe-core bonus scan.
+ *   41 skip-link-exists              — first focusable, href=#top, clip-hidden
+ *   42 lightbox-focus-trap           — Tab cycles among close/prev/next
+ *   43 lightbox-focus-return         — focus restored to invoking figure
+ *   44 body-scroll-lock-lightbox     — body overflow=hidden while open
+ *   45 body-scroll-lock-mobile-menu  — same for mobile drawer (mobile only)
+ *   46 theme-aria-pressed            — aria-pressed reflects light=true
+ *   axe-bonus                        — zero serious/critical at initial + open
+ *                                      (color-contrast disabled per plan #5)
+ */
 const { test, expect } = require('./fixtures');
 const AxeBuilder = require('@axe-core/playwright').default;
 
