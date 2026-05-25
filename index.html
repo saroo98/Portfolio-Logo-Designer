@@ -771,7 +771,7 @@
 </footer>
 
 <!-- ─── LIGHTBOX ─── -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true" inert>
   <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Close">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -917,12 +917,17 @@
       }, 180);
     };
 
+    let lastTrigger = null;
     const open = (i) => {
       isOpen = true;
+      lastTrigger = document.activeElement;
       document.body.classList.add('lb-open');
       lb.classList.add('is-open');
       lb.setAttribute('aria-hidden', 'false');
+      lb.removeAttribute('inert');
       showAt(i, true);
+      // move focus inside the dialog
+      btnX.focus({ preventScroll: true });
 
       // swipe hint, mobile only, first time per session
       const hint = document.getElementById('lb-hint');
@@ -936,8 +941,14 @@
       isOpen = false;
       lb.classList.remove('is-open');
       lb.setAttribute('aria-hidden', 'true');
+      lb.setAttribute('inert', '');
       lbImg.classList.remove('is-ready');
       document.body.classList.remove('lb-open');
+      // return focus to the figure that opened the dialog
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus({ preventScroll: true });
+      }
+      lastTrigger = null;
     };
     const next = () => swapTo(current + 1, +1);
     const prev = () => swapTo(current - 1, -1);
@@ -959,9 +970,20 @@
 
     document.addEventListener('keydown', (e) => {
       if (!isOpen) return;
-      if (e.key === 'Escape')      close();
-      else if (e.key === 'ArrowRight') next();
-      else if (e.key === 'ArrowLeft')  prev();
+      if (e.key === 'Escape')      { close(); return; }
+      if (e.key === 'ArrowRight')  { next();  return; }
+      if (e.key === 'ArrowLeft')   { prev();  return; }
+      if (e.key === 'Tab') {
+        // Focus trap: keep tab focus within close/prev/next while open.
+        const cycle = [btnX, btnP, btnN];
+        const idx = cycle.indexOf(document.activeElement);
+        const dir = e.shiftKey ? -1 : 1;
+        const nextIdx = idx === -1
+          ? (dir === 1 ? 0 : cycle.length - 1)
+          : (idx + dir + cycle.length) % cycle.length;
+        e.preventDefault();
+        cycle[nextIdx].focus({ preventScroll: true });
+      }
     });
 
     // touch swipe
