@@ -3,8 +3,11 @@ test-results/
 playwright-report/
 playwright-report.zip
 _handoff_extract/
+LARGER SIZE/
 lighthouse.json
 lighthouse-*.json
+baseline-*.txt
+verification.txt
 .DS_Store
 Thumbs.db
 *.log
