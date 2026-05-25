@@ -5,8 +5,9 @@
 <title>Maryam Ansari — Logo Designer</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Maryam Ansari — a quiet practice of logos and marks. Based in the UK. Selected work, 2010—2024." />
-<link rel="canonical" href="./" />
+<!-- canonical: add absolute URL at deploy time (e.g. https://maryamansari.uk/) -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preload" as="image" href="works/01-jobjooya.jpg" fetchpriority="high" />
 <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f0f0f0" media="(prefers-color-scheme: light)" />
 <meta name="author" content="Maryam Ansari" />
@@ -50,7 +51,9 @@
 </noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" /></noscript>
 <style>
   :root {
     --bg: rgb(240, 240, 240);
