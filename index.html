@@ -726,7 +726,7 @@
 </header>
 
 <!-- mobile menu drawer -->
-<div class="menu-drawer" id="menu-drawer" aria-hidden="true">
+<div class="menu-drawer" id="menu-drawer" inert>
   <a href="#works" data-menu>Works</a>
   <a href="#about" data-menu>About</a>
   <a href="#contact" data-menu>Contact</a>
@@ -807,7 +807,7 @@
 </footer>
 
 <!-- ─── LIGHTBOX ─── -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true" inert>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" inert>
   <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Close">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -878,7 +878,7 @@
       document.body.classList.toggle('menu-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      drawer.toggleAttribute('inert', !open);
       if (main) main.toggleAttribute('inert', open);
       if (foot) foot.toggleAttribute('inert', open);
       if (open) {
@@ -988,7 +988,6 @@
       lastTrigger = document.activeElement;
       document.body.classList.add('lb-open');
       lb.classList.add('is-open');
-      lb.setAttribute('aria-hidden', 'false');
       lb.removeAttribute('inert');
       showAt(i, true);
       // move focus inside the dialog
@@ -1005,7 +1004,6 @@
     const close = () => {
       isOpen = false;
       lb.classList.remove('is-open');
-      lb.setAttribute('aria-hidden', 'true');
       lb.setAttribute('inert', '');
       lbImg.classList.remove('is-ready');
       document.body.classList.remove('lb-open');
