@@ -5,6 +5,23 @@
 <title>Maryam Ansari — Logo Designer</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Maryam Ansari — a quiet practice of logos and marks. Based in the UK. Selected work, 2010—2024." />
+<script>
+  // Theme init — runs before stylesheet to avoid FOUC on stored light theme.
+  (function () {
+    try {
+      var stored = localStorage.getItem('maryam-theme');
+      var initial = (stored === 'dark' || stored === 'light') ? stored : 'dark';
+      document.documentElement.setAttribute('data-theme', initial);
+    } catch (_) { /* localStorage unavailable (privacy mode); keep markup default */ }
+  })();
+</script>
+<noscript>
+  <style>
+    /* JS disabled: skip the entrance animation that would otherwise leave content invisible. */
+    .work img { opacity: 1 !important; transform: none !important; }
+    .hero h1, .hero-eyebrow, .hero-lede, .hero-mark { opacity: 1 !important; transform: none !important; animation: none !important; }
+  </style>
+</noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -746,18 +763,14 @@
 </div>
 
 <script>
-  // ── theme toggle (persisted) ──
+  // ── theme toggle (persisted) ── init runs in <head>; this binds click.
   (function () {
     const root = document.documentElement;
     const KEY = 'maryam-theme';
-    const stored = localStorage.getItem(KEY);
-    // dark is the default; users opt in to light
-    const initial = stored || 'dark';
-    root.setAttribute('data-theme', initial);
     document.getElementById('theme').addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      localStorage.setItem(KEY, next);
+      try { localStorage.setItem(KEY, next); } catch (_) { /* storage blocked */ }
     });
   })();
 
