@@ -7,7 +7,7 @@
  *   04 meta-description     — meta description content matches handoff copy
  *   05 viewport-meta        — width=device-width, initial-scale=1
  *   06 main-element         — exactly one <main id="top">
- *   07 hero-h1-content      — H1 contains "Maryam Ansari," and "logo designer."
+ *   07 hero-h1-content      — H1 contains "Maryam Ansari"
  *   08 footer-renders       — copyright + "United Kingdom"
  */
 const { test, expect } = require('./fixtures');
@@ -63,8 +63,7 @@ test.describe('Page load & structure', () => {
     const h1 = page.locator('section.hero h1');
     await expect(h1).toHaveCount(1);
     const text = (await h1.textContent()) || '';
-    expect(text).toContain('Maryam Ansari,');
-    expect(text).toContain('logo designer.');
+    expect(text.trim()).toBe('Maryam Ansari');
   });
 
   test('08 footer-renders', async ({ page }) => {

@@ -61,7 +61,6 @@ Lighthouse    : a11y 100 · best-practices 100 · SEO 100 · performance 84
 | Color-contrast on `--dim` text | Would require visible palette changes |
 | `<link rel="canonical">` | Needs the deploy URL; placeholder relative form fails Lighthouse, absolute fake URL hurts SEO |
 | `mailto:maryam@example.com` placeholder | Content change |
-| `href="#"` social links | Content change |
 | Section-head `<div>` → `<h2>` semantic upgrade | DOM structure change |
 | Splitting inline `<style>` / `<script>` into external files | Reorganization beyond visible-fix scope |
 | OG image (dedicated 1200×630) | Uses `works/01-jobjooya.jpg` until art-directed |
