@@ -16,8 +16,14 @@ test.describe('Mobile menu', () => {
     await page.goto('/');
     await page.click('#burger');
     await expect(page.locator('body')).toHaveClass(/menu-open/);
-    const drawerOpacity = await page.locator('#menu-drawer').evaluate((el) => getComputedStyle(el).opacity);
-    expect(parseFloat(drawerOpacity)).toBeGreaterThan(0.99);
+    // Drawer opacity transitions over 280ms — poll until settled.
+    await expect.poll(
+      async () =>
+        parseFloat(
+          await page.locator('#menu-drawer').evaluate((el) => getComputedStyle(el).opacity)
+        ),
+      { timeout: 2000 }
+    ).toBeGreaterThan(0.99);
     const pe = await page.locator('#menu-drawer').evaluate((el) => getComputedStyle(el).pointerEvents);
     expect(pe).toBe('auto');
   });

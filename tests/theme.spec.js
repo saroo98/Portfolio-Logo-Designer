@@ -49,11 +49,18 @@ test.describe('Theme toggle', () => {
   });
 
   test('20 bg-var-changes', async ({ page }) => {
+    // Read --bg custom property directly (instant, not animated by transition).
     await page.goto('/');
-    const darkBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+    const darkBg = await page.evaluate(() =>
+      getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+    );
     await page.click('#theme');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-    const lightBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+    const lightBg = await page.evaluate(() =>
+      getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+    );
     expect(darkBg).not.toBe(lightBg);
+    expect(darkBg).toBeTruthy();
+    expect(lightBg).toBeTruthy();
   });
 });

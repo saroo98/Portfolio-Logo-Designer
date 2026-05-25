@@ -89,6 +89,8 @@ test.describe('Lightbox', () => {
     await expect(page.locator('#lb-idx')).toHaveText('5');
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('#lb-idx')).toHaveText('6');
+    // Lightbox swap is intentionally debounced (~440ms total).
+    await page.waitForTimeout(500);
     await page.keyboard.press('ArrowLeft');
     await expect(page.locator('#lb-idx')).toHaveText('5');
   });
