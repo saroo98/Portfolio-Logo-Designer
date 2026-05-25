@@ -1,0 +1,10 @@
+node_modules/
+test-results/
+playwright-report/
+playwright-report.zip
+_handoff_extract/
+lighthouse.json
+lighthouse-*.json
+.DS_Store
+Thumbs.db
+*.log
